@@ -1,0 +1,48 @@
+import pandas as pd
+
+
+def serarch_by_name(name):
+    data = pd.read_excel('team-roster.xlsx')
+    data_li = data.values.tolist()
+    result = []
+    name_li = []
+    for first_list in data_li:
+        if name in first_list:
+            name_li.append(first_list)
+        else:
+            result.append(first_list[0])
+    if len(result) == len(data_li):
+        print('查无此人')
+    else:
+        return name_li
+
+
+def get_email():
+    name = 'Peng, Issac'
+    name_li = serarch_by_name(name)
+    basic_info = name_li[0]
+    worker_email = basic_info[3]
+    leader_info = basic_info[2].split()
+    leader_name = leader_info[0] + ' ' + leader_info[1]
+    name_li = serarch_by_name(leader_name)
+    basic_info = name_li[0]
+    leader_email = basic_info[3]
+    email_list = []
+    email_list.append(worker_email)
+    email_list.append(leader_email)
+    return email_list
+
+
+if __name__ == '__main__':
+    # name = input('请输入姓名(例如Tom, Rust): ')
+    # name = 'Peng, Issac'
+    # name_li = serarch_by_name(name)
+    # basic_info = name_li[0]
+    # worker_email = basic_info[3]
+    # leader_info = basic_info[2].split()
+    # leader_name = leader_info[0] + ' ' + leader_info[1]
+    # name_li = serarch_by_name(leader_name)
+    # basic_info = name_li[0]
+    # leader_email = basic_info[3]
+    eamil = get_email()
+    print(eamil)
